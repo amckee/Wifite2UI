@@ -14,27 +14,34 @@ class ButtonWindow( Gtk.Window ):
         super().__init__( title="Wifite2 UI" )
         self.set_border_width( 10 )
 
-        hbox = Gtk.Box( spacing=6 )
-        self.add(hbox)
+        #box = Gtk.Box( spacing=6 )
+        #self.add(box)
+        grid = Gtk.Grid()
 
         # add buttons
-        button = Gtk.Button.new_with_label( "Wifi Not Prepped" )
-        button.connect( "clicked", self.btnPrepare )
-        hbox.pack_start(button, True, True, 0)
+        btnPrepare = Gtk.Button.new_with_label( "Wifi Not Prepped" )
+        btnPrepare.connect( "clicked", self.btnPrepare )
+        grid.add(btnPrepare)
+        #box.pack_start( button, True, True, 0 )
 
-        button = Gtk.Button.new_with_mnemonic( "Start Attack" )
-        button.connect( "clicked", self.btnAttack )
-        hbox.pack_start(button, True, True, 0)
+        btnStart = Gtk.Button.new_with_label( "Start Attack" )
+        btnStart.connect( "clicked", self.btnAttack )
+        grid.attach_next_to(btnPrepare, btnStart, Gtk.PositionType.RIGHT, 2, 2)
+        #box.pack_start( button, True, True, 0 )
 
-        button = Gtk.Button.new_with_mnemonic( "_Close" )
-        button.connect( "clicked", self.btnClose )
-        hbox.pack_start(button, True, True, 0)
+        btnClose = Gtk.Button.new_with_label( "Close" )
+        btnClose.connect( "clicked", self.btnClose )
+        grid.attach_next_to(btnStart, btnClose, Gtk.PositionType.RIGHT, 1, 1)
+        #box.pack_start( button, True, True, 0 )
 
         # add terminal
-        cli = Gtk.TextView()
-        scroll = Gtk.ScrolledWindow()
-        scroll.add( cli )
-        hbox.pack_start( scroll, True, True, 0 )
+        #cli = Gtk.TextView()
+        #scroll = Gtk.ScrolledWindow()
+        #scroll.add( cli )
+        #grid.attach_next_to(btnPrepare, cli, Gtk.PositionType.BOTTOM, 1, 1)
+        #box.pack_start( scroll, True, True, 0 )
+
+        self.add(grid)
 
         proc = Popen("ping -c10 localhost", stdout=PIPE, shell=True)
         sub_outp = ""
