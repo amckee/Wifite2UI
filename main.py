@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import gi
 from subprocess import Popen, PIPE
 
@@ -26,12 +26,12 @@ class ButtonWindow( Gtk.Window ):
 
         btnStart = Gtk.Button.new_with_label( "Start Attack" )
         btnStart.connect( "clicked", self.btnAttack )
-        grid.attach_next_to(btnPrepare, btnStart, Gtk.PositionType.RIGHT, 2, 2)
+        grid.attach_next_to(btnStart, btnPrepare, Gtk.PositionType.RIGHT, 2, 2)
         #box.pack_start( button, True, True, 0 )
 
         btnClose = Gtk.Button.new_with_label( "Close" )
         btnClose.connect( "clicked", self.btnClose )
-        grid.attach_next_to(btnStart, btnClose, Gtk.PositionType.RIGHT, 1, 1)
+        grid.attach_next_to(btnClose, btnStart, Gtk.PositionType.RIGHT, 1, 1)
         #box.pack_start( button, True, True, 0 )
 
         # add terminal
@@ -68,9 +68,9 @@ class ButtonWindow( Gtk.Window ):
 
     def btnAttack(self, button):
         if self.attacking:
-            button.set_label( "Stop Attack" )
-        else:
             button.set_label( "Start Attack" )
+        else:
+            button.set_label( "Stop Attack" )
         self.attacking = not self.attacking
 
     def btnClose(self, button):
