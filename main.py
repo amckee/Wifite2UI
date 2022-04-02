@@ -34,7 +34,7 @@ class ButtonWindow( Gtk.Window ):
         btnClose.connect( "clicked", self.btnClose )
         grid.attach_next_to(btnClose, btnStart, Gtk.PositionType.RIGHT, 1, 1)
 
-        btnTerminal = Gtk.Button.new_with_label("CLI GOES HERE")
+        btnTerminal = Gtk.Button.new_with_label("TERMINAL GOES HERE")
         grid.attach_next_to(btnTerminal, btnPrepare, Gtk.PositionType.BOTTOM, 3, 5)
 
         #box.pack_start( button, True, True, 0 )
@@ -48,8 +48,8 @@ class ButtonWindow( Gtk.Window ):
 
         self.add(grid)
 
-        proc = Popen("ping -c10 localhost", stdout=PIPE, shell=True)
-        sub_outp = ""
+        #proc = Popen("ping -c10 localhost", stdout=PIPE, shell=True)
+        #sub_outp = ""
     
     def non_block_read(output):
         fd = output.fileno()
