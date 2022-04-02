@@ -39,7 +39,6 @@ class Wifite2UI( Gtk.Window ):
 
         #lblTerminal = Gtk.Label()
         self.grid.attach_next_to(self.lblTerminal, btnPrepare, Gtk.PositionType.BOTTOM, 3, 5)
-        sub_outp = ""
 
         self.add(self.grid)
 
