@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import gi
-from subprocess import Popen, PIPE
+import subprocess
+#from subprocess import Popen, PIPE
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -26,12 +27,16 @@ class ButtonWindow( Gtk.Window ):
 
         btnStart = Gtk.Button.new_with_label( "Start Attack" )
         btnStart.connect( "clicked", self.btnAttack )
-        grid.attach_next_to(btnStart, btnPrepare, Gtk.PositionType.RIGHT, 2, 2)
+        grid.attach_next_to(btnStart, btnPrepare, Gtk.PositionType.RIGHT, 1, 1)
         #box.pack_start( button, True, True, 0 )
 
         btnClose = Gtk.Button.new_with_label( "Close" )
         btnClose.connect( "clicked", self.btnClose )
         grid.attach_next_to(btnClose, btnStart, Gtk.PositionType.RIGHT, 1, 1)
+
+        btnTerminal = Gtk.Button.new_with_label("CLI GOES HERE")
+        grid.attach_next_to(btnTerminal, btnPrepare, Gtk.PositionType.BOTTOM, 3, 5)
+
         #box.pack_start( button, True, True, 0 )
 
         # add terminal
@@ -64,6 +69,10 @@ class ButtonWindow( Gtk.Window ):
             button.set_label( "Wifi Not Prepped" )
         else:
             button.set_label( "Wifi Prepped" )
+            #systemctl show -p ActiveState --value NetworkManager
+            #import subprocess
+            #status = subprocess.check_output("systemctl show -p ActiveState --value abc")
+            #print(status)
         self.prepped = not self.prepped
 
     def btnAttack(self, button):
@@ -75,6 +84,8 @@ class ButtonWindow( Gtk.Window ):
 
     def btnClose(self, button):
         Gtk.main_quit()
+    
+
 
 win = ButtonWindow()
 win.connect("destroy", Gtk.main_quit)
